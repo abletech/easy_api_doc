@@ -1,0 +1,104 @@
+api:
+  v2:
+    private:
+      description: API For Mule
+      detail: Loyalty Mule Service API
+      formats: 'json'
+      defaults:
+        uri: /v1
+      resources:
+
+        #===============================================================
+        # transactions
+        #===============================================================
+
+        transactions:
+          authentication:
+            type: oauth_bearer
+            access_token:
+          description: Transaction resource
+          actions:
+            create:
+              http_method: POST
+              uri: /v1/private/transactions
+              description: Create a new transaction. Transaction data is provided as a JSON structure in the request body. See Col's Google doc for data structure.
+  v1:
+    defaults:
+      domain: localhost:3000
+      protocol: http
+    private:
+      description: Our private (internal) API
+      detail: blah blah blah - longer description
+      formats: 'json, xml'
+      defaults:
+        uri: /api/v1/private
+      authentication:
+        type: basic
+        user: admin
+        password: password
+      resources:
+        members:
+          description: 'List all the Harry members, and perform updates'
+          actions:
+            index:
+              http_method: GET
+              uri: /api/v1/private/members
+              description: List all the members
+              parameters:
+                page:
+                  type: integer
+                  default: 1
+                per_page:
+                  type: integer
+                  default: 20
+            show:
+              http_method: GET
+              uri: /api/v1/private/members/:id
+              description: Show the details for a single member
+              parameters:
+                id:
+                  type: integer
+                  example: 1
+            post_update:
+              http_method: POST
+              uri: /api/v1/private/members/:id
+              description: Update the member's attributes
+              post_data:
+                example: '{"key": "value"}'
+            update:
+              http_method: PUT
+              uri: /api/v1/private/members/:id
+              description: Update the member's attributes
+              parameters:
+                id:
+                  type: integer
+                  example: 1
+                member:
+                  email:
+                    type: string
+                  email_confirmation:
+                    type: string
+                  title:
+                    type: string
+                  first_name:
+                    type: string
+                  middle_names:
+                    type: string
+                  last_name:
+                    type: string
+                  date_of_birth:
+                    type: string
+                    info: 'YYYY-MM-DD'
+                  gender:
+                    type: string
+                    info: 'M|F'
+                  mobile_area:
+                    type: string
+                  mobile:
+                    type: string
+                  home_phone_area:
+                    type: string
+                  home_phone:
+                    type: string
+                  work_phone:
+                    type: string

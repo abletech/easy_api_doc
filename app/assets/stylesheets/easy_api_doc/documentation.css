@@ -1,0 +1,47 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.wrapper {
+  margin-top: 60px;
+}
+
+.main h1 { margin-bottom: 0.5em; }
+
+h1 .label {
+  margin-right: 4px;
+  font-weight: normal;
+}
+
+small.pull-right {
+  float: right;
+}
+
+.response .output {
+  display: block;
+  width: 98%;
+  min-height: 400px;
+  padding: 13px;
+}
+
+table.table tbody tr.strong th {
+  background-color: #eee;
+}
+
+.input.additional {
+  display: block;
+}
+
+.authenticated .icon {
+  display: inline-block;
+  background: url(/assets/easy_api_doc/glyphicons-halflings.png) -288px -25px no-repeat;
+
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+textarea {
+  width: 350px;
+}

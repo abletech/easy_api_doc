@@ -1,0 +1,10 @@
+<h2>Index</h2>
+
+<ul class='nav nav-list'>
+  <% @versions.each do |version| %>
+    <li class='nav-header'><%= link_to version.name, api_path(version.name) %></li>
+    <% version.namespaces.each do |ns| %>
+      <li><%= link_to ns.name, namespace_path(:api => version.name, :namespace => ns.name) %></li>
+    <% end %>
+  <% end %>
+</ul>

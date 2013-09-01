@@ -1,0 +1,18 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'resource_index' %>
+<% end %>  
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @api_version.name %> / <%= @namespace.name %> / <%= @resource.name %> / <%= content_tag(:small, content_tag(:span, '', :class => 'icon') + 'authenticated', :class => 'authenticated') if @resource.authentication %></h3>
+  </div>
+  <div class="panel-body">
+    <%= contents_for_resource(@resource, 'description') %>
+  </div>
+</div>
+
+<ul class="list-group">
+  <% @actions.each do |a| %>
+    <li class="list-group-item">[<%= a.attributes['http_method'].upcase %>] <%= link_to a.name, action_link(a) %></li>
+  <% end %>
+</ul>

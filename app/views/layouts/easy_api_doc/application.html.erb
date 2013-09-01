@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @app_title || 'EasyApiDoc' %> </title>
+  <link rel="shortcut icon" href="<%= asset_path("easy_api_doc/favicon.ico") %>" >
+  <%= stylesheet_link_tag    "easy_api_doc/application", :media => "all" %>
+  <%= javascript_include_tag "easy_api_doc/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class='container'>
+
+    <%= render :partial => 'layouts/easy_api_doc/header' %>
+
+    <div class='row'>
+
+      <% if sidebar = yield(:sidebar) %>
+        <div class='col-md-3 sidebar'>
+            <%= sidebar %>
+            <%#= render :partial => 'shared/versions_index' %>
+        </div>
+      <% end %>
+
+      <div class='<%= sidebar ? "col-md-9" : "col-md-12" %> main'>
+        <%= yield %>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

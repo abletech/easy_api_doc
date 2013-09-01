@@ -1,0 +1,56 @@
+= EasyApiDoc
+
+This project rocks and uses MIT-LICENSE.
+
+See test/dummy/doc/api_doc.yml for an example YAML config file.
+This project is a work in progress, and doesn't hold your hand with validating the config file format yet. It's current supported format is: (nodes named with <> are to be named whatever you like)
+Use the rails convention of specifying dynamic url paramaters via ':id'
+
+api:
+  <version_number>:
+    defaults:
+      domain: api.example.com
+      protocol: http
+      ...
+    <namespace>:
+      description: "..."
+      detail:      "..."
+      formats: "json, xml"
+      authentication:
+        type: basic
+        user: admin
+        password: password
+      resources:
+        <members>:
+          description: "..."
+          actions:
+            <update>:
+              http_method: PUT
+              uri: /members/:id
+              description: "..."
+              parameters:
+                <id>:
+                  type: integer
+                  example: 1
+                <account_type>:
+                  type: string
+                  default: personal
+                <nested_record>:
+                  <nested_attr>:
+                    type: string
+                    example: test@example.com
+
+
+To use this, add it to your gemfile by either:
+
+    gem 'easy_api_doc'
+
+or
+
+    gem 'easy_api_doc', :git => 'git@git.lnlz.co.nz:/var/git/loyalty_nz/easy_api_doc.git'
+
+
+example routes.rb:
+
+  mount EasyApiDoc::Engine => "/api_docs"
+

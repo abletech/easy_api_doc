@@ -1,0 +1,105 @@
+<% provide(:sidebar) do %>
+  <%= render :partial => 'resource_index' %>
+<% end %>
+
+<%= breadcrumbs([
+  [@api_version.name, api_link(@api_version)],
+  [@namespace.name, namespace_link(@namespace)],
+  [@resource.name, resource_link(@resource)],
+  [@action.name]
+]) %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">[<%= @action.attributes['http_method'] %>] <%= @action.name %>
+  <%= @action.formats.map {|l| content_tag(:span, l, :class => 'label label-info') }.join.html_safe %>
+  <%= content_tag(:small, content_tag(:span, '', :class => 'icon') + 'authenticated', :class => 'authenticated') if @action.authentication %></h3>
+  </div>
+  <div class="panel-body">
+    <%= @action.attributes['uri'] %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Description</h3>
+  </div>
+  <div class="panel-body">
+    <%= contents_for_action(@resource, @action, 'description') %>
+  </div>
+</div>
+
+  <%= content_tag(:form, {:class => 'api_call', :action => @action.path, :method => @action.attributes['http_method'].downcase, 'accept-charset' => 'UTF8'}) do %>
+
+  <% if @action.authentication %>
+    <table class='table table-bordered'>
+      <% auth_keys = @action.authentication.keys %>
+      <tr class='strong'>
+        <% auth_keys.each do |k| %>
+          <th><%= (k =~ /type/i) ? 'Authentication' : k %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <% auth_keys.each do |k| %>
+          <td>
+            <% if  ( k =~ /type/i)  %>
+              <%= hidden_field_tag("_doc_authentication[#{k}]",  @action.authentication[k], :class => 'input') %> <%= @action.authentication[k] %>
+            <% elsif ( k =~ /password/i)%>
+              <%= password_field_tag("_doc_authentication[#{k}]",  @action.authentication[k], :class => 'input') %>
+            <% else %>
+              <%= text_field_tag("_doc_authentication[#{k}]",  @action.authentication[k], :class => 'input') %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Parameters<small class='pull-right'>format–<%= select_tag 'format', options_for_select(@action.formats) %></small></h3>
+    </div>
+    <div class="panel-body">
+
+      <% if @action.parameters && @action.parameters.any? %>
+      <table class='table table-bordered table-condensed'>
+        <tr class='strong'>
+          <th>Parameter</th>
+          <th>Value</th>
+          <th><%= link_to 'disable all', '#', :class => 'disable-all-toggle' %></th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Required</th>
+          <th>Info</th>
+        </tr>
+        <% @action.parameters.each do |p| %>
+          <%= render :partial => 'easy_api_doc/documentation/parameter', :locals => {:parameter => p} %>
+        <% end %>
+      </table>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <% if @action.post_data.present? %>
+      <div class="panel-heading">
+        <h3 class="panel-title">Post Data</h3>
+      </div>
+      <div class="panel-body">
+        <% content = example_json(@action.post_data['example']) || @action.post_data['json'] || {} %>
+        <%= text_area_tag :_doc_post_data, content, rows: 10, cols: 70 %>
+      </div>
+    <% end %>
+  </div>
+
+    <%= link_to 'Run example', '#', :class => 'btn btn-primary run_api_call' %> <%= image_tag("easy_api_doc/loading.gif", :class => "loading", :style => "display:none") %>
+
+    <div class='response' style="display:none;">
+      <hr>
+      <h3>Response</h3>
+      <pre>http status: <span class='http_status'></span></pre>
+      <textarea class="prettyprint output"></textarea>
+    </div>
+
+  <% end %>
