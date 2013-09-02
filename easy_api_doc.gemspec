@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.abletech.co.nz"
   s.summary     = "Documents your API with executable examples."
   s.description = "Use a YAML file to specify your API, and EasyApiDoc will serve up this information with executable examples."
+  s.license = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
