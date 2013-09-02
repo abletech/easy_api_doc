@@ -1,5 +1,9 @@
 # Changelog for easy_api_doc
 
+## 0.2.1
+
+* Tweak documentation
+
 ## 0.2.0
 
 * Rename gem to easy_api_doc
