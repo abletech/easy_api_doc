@@ -1,7 +1,6 @@
 module EasyApiDoc
   class Cancan
     def initialize(controller, current_user_method, ability = ::Ability)
-      Rails.logger.info controller
       @controller = controller
       @current_user_method = current_user_method
       @controller.instance_variable_set '@ability', ability
