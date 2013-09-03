@@ -88,7 +88,7 @@ There is no authorization unless specified. Anyone can access anything.
 #### Custom
 Whatever you pass to `authorize_with` is evaluated as a before_filter on EasyApiDoc controllers.
 
-    config.authorize_with do
+    options.authorize_with do
       redirect_to root_path unless user.is_admin?
     end
 
