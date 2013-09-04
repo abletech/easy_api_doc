@@ -95,6 +95,6 @@ Whatever you pass to `authorize_with` is evaluated as a before_filter on EasyApi
 #### CanCan
 You can use [CanCan](https://github.com/ryanb/cancan) to authorize access.
 
-You need to send `:cancan` to the `athorize_with` option. You *must* also send (as a second parameter) the name of the method used to access the current user. e.g. with Devise this is `current_user`.
+You need to send `:cancan` to the `authorize_with` option. You *must* also send (as a second parameter) the name of the method used to access the current user. e.g. with Devise this is `current_user`.
 
     options.authorize_with :cancan, :current_user
