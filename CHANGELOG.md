@@ -1,5 +1,12 @@
 # Changelog for easy_api_doc
 
+## 0.3.0
+
+New Features:
+
+* Add support for authentication
+* Add support for authorization
+
 ## 0.2.1
 
 * Tweak documentation
