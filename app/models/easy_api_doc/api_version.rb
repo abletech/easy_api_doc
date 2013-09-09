@@ -3,7 +3,7 @@ module EasyApiDoc
     include EasyApiDoc::Configurable
 
     def namespaces
-      @namespaces ||= load_children(EasyApiDoc::Namespace, nil, {:exclude => ['defaults', 'meta']})
+      @namespaces ||= load_children(EasyApiDoc::Namespace, nil, {:exclude => ['defaults', 'meta', 'description']})
     end
 
     def self.config_path

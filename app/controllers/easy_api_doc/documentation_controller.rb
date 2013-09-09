@@ -27,6 +27,7 @@ module EasyApiDoc
       @meta = EasyApiDoc::ApiVersion.config['meta']
       @app_title = @meta['app_title'] if @meta
     end
+
     # def execute_action
     #   @api_version = EasyApiDoc::ApiVersion.find(params[:api])
     #   @namespace = @api_version.namespaces.find {|ns| ns.name == params[:namespace] }

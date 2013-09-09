@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @namespace.attributes['description'] %> <%= content_tag(:small, content_tag(:span, '', :class => 'icon') + 'authenticated', :class => 'authenticated') if @namespace.authentication %></h3>
+  </div>
+  <div class="panel-body">
+    <p><%= @namespace.attributes['detail'] %></p>
+  </div>
+</div>

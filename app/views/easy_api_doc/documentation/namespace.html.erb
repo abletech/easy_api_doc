@@ -2,12 +2,4 @@
   <%= render :partial => 'resource_index' %>
 <% end %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= @api_version.name %> &gt; <%= @namespace.name %><%= content_tag(:small, content_tag(:span, '', :class => 'icon') + 'authenticated', :class => 'authenticated') if @namespace.authentication %></h3>
-  </div>
-  <div class="panel-body">
-    <p><%= @namespace.attributes['description'] %></p>
-    <p><%= @namespace.attributes['detail'] %></p>
-  </div>
-</div>
+<%= render 'namespace_panel' %>

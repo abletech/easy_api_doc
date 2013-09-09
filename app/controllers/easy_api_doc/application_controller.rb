@@ -18,10 +18,5 @@ module EasyApiDoc
     def load_versions
       @api_versions = EasyApiDoc::ApiVersion.all
     end
-
-    def load_config
-      Configuration.load
-    end
-
   end
 end

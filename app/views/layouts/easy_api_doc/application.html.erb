@@ -7,28 +7,25 @@
   <%= javascript_include_tag "easy_api_doc/application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
   <div class='container'>
+    <%= render 'layouts/easy_api_doc/header' %>
 
-    <%= render :partial => 'layouts/easy_api_doc/header' %>
+    <%= yield(:heading) if content_for?(:heading) %>
 
     <div class='row'>
-
-      <% if sidebar = yield(:sidebar) %>
+      <% if content_for?(:sidebar) %>
         <div class='col-md-3 sidebar'>
-            <%= sidebar %>
-            <%#= render :partial => 'shared/versions_index' %>
+          <%= yield(:sidebar) %>
+          <%#= render :partial => 'shared/versions_index' %>
         </div>
       <% end %>
-
-      <div class='<%= sidebar ? "col-md-9" : "col-md-12" %> main'>
+      <div class='<%= content_for?(:sidebar) ? "col-md-9" : "col-md-12" %> main'>
         <%= yield %>
       </div>
-
     </div>
 
   </div>
-
 </body>
 </html>

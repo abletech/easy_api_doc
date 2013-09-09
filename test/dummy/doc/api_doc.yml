@@ -1,8 +1,11 @@
 api:
   v2:
+    description: A better awesomer version!
     private:
       description: API For Mule
-      detail: Loyalty Mule Service API
+      detail: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Pellentesque eget dolor posuere felis hendrerit scelerisque a at massa.
+        Maecenas odio urna, congue commodo rutrum ac, aliquam non risus.
       formats: 'json'
       defaults:
         uri: /v1
@@ -16,7 +19,7 @@ api:
           authentication:
             type: oauth_bearer
             access_token:
-          description: Transaction resource
+          description: The transactions made by the mobile phone
           actions:
             create:
               http_method: POST

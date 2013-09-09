@@ -1,5 +1,13 @@
 <h1>API Versions</h1>
 
 <% @api_versions.each do |api| %>
-  <p><%= api.name %></p>
+  <h3><%= api.name %> <small><%= api.attributes["description"] %></small></h3>
+  <div class='list-group'>
+    <% api.namespaces.each do |namespace| %>
+      <a href="<%= namespace_link(namespace) %>" class="list-group-item">
+        <h4 class="list-group-item-heading"><%= namespace.name %></h4>
+        <p class="list-group-item-text"><%= namespace.attributes["description"] %></p>
+      </a>
+    <% end %>
+  </div>
 <% end %>

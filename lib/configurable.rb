@@ -1,11 +1,9 @@
 module EasyApiDoc
   module Configurable
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.class_eval do
-        attr_accessor :name, :attributes, :parents
-      end
-      base.extend EasyApiDoc::Configurable::ClassMethods
+    included do
+      attr_accessor :name, :attributes, :parents
     end
 
     module ClassMethods

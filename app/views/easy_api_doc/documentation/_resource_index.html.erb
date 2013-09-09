@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= @api_version.name %> / <%= @namespace.name %></h3>
+    <h3 class="panel-title"><%= @api_version.name %> / <%= link_to @namespace.name, namespace_link(@namespace) %></h3>
   </div>
   <div class="panel-body">
   <ul class='nav nav-list'>
