@@ -1,5 +1,5 @@
 module EasyApiDoc
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
 
     before_filter :load_versions
     before_filter :authenticate!
