@@ -1,3 +1,8 @@
 .method-label {
   font-size: 83%;
 }
+
+span.format.badge {
+  margin-left: 2px;
+  font-weight: normal;
+}

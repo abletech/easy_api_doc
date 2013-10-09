@@ -1,5 +1,6 @@
 module EasyApiDoc
   class ApplicationController < ::ApplicationController
+    helper EasyApiDoc::ResourceHelper
 
     before_filter :load_versions
     before_filter :authenticate!

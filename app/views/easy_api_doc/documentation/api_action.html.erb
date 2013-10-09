@@ -19,7 +19,7 @@
           <%= @action.attributes['http_method'].upcase %>
         </span>
         &nbsp;&nbsp;<%= @action.name %>
-        <%= @action.formats.map {|l| content_tag(:span, l, :class => 'badge pull-right') }.join.html_safe %>
+        <%= @action.formats.map {|l| content_tag(:span, l, :class => 'format badge pull-right') }.join.html_safe %>
         <%= content_tag(:small, content_tag(:span, '', :class => 'icon') + 'authenticated', :class => 'authenticated') if @action.authentication %>
       </h3>
     </div>
