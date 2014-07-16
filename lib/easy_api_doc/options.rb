@@ -2,6 +2,14 @@ module EasyApiDoc
   module Options
     class << self
 
+      def file 
+        @file
+      end
+
+      def file=(file)
+        @file = file
+      end
+
       def authenticate_with(&block)
         @authenticate = block if block
         @authenticate || Proc.new {}
