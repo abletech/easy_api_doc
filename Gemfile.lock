@@ -3,6 +3,8 @@ PATH
   specs:
     easy_api_doc (0.3.0)
       github-markup (~> 0.7.2)
+      jquery-rails
+      jquery-ui-rails
       rails (>= 4.0.0, < 4.2)
       redcarpet
 
@@ -44,14 +46,16 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.2.1)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.3.3)
-    multi_json (1.10.0)
-    polyglot (0.3.4)
+    minitest (5.3.5)
+    multi_json (1.10.1)
+    polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -70,7 +74,7 @@ GEM
       activesupport (= 4.1.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     redcarpet (3.1.2)
     sprockets (2.12.1)
       hike (~> 1.2)
@@ -82,12 +86,12 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (1.1.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
 
 PLATFORMS
@@ -95,6 +99,3 @@ PLATFORMS
 
 DEPENDENCIES
   easy_api_doc!
-  github-markup
-  jquery-rails
-  redcarpet

@@ -20,5 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", [">= 4.0.0", '< 4.2']
   s.add_dependency "github-markup", "~> 0.7.2"
   s.add_dependency "redcarpet"
+  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'jquery-rails'
 
 end
