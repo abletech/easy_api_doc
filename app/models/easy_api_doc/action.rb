@@ -24,6 +24,10 @@ module EasyApiDoc
       @parameters ||= load_children(EasyApiDoc::Parameter, 'parameters')
     end
 
+    def headers
+      @headers ||= load_children(EasyApiDoc::Parameter, 'headers')
+    end
+
     def post_data
       attributes['post_data']
     end
