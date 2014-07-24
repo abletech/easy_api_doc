@@ -110,10 +110,18 @@ $(document).ready(function () {
 // See: http://ostermiller.org/calc/encode.html for an example Base64 encoding js library
 function process_api_call(uri, method, data, auth_settings, headers, options) {
   var form = options.form;
+  var processData = true
+  console.log(options)
+  if(options.format === 'json_raw_body'){
+    data = JSON.stringify(data)
+    processData = false
+    options.format = 'json'
+  }
   $.ajax({
 	  url: uri,
     type: method,
-    data: data, 
+    data: data,
+    processData: processData, 
     error: function(xhr, data, ex) {
       response = xhr.responseText;
       if(response == null || response == '' || response.size == 0){

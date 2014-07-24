@@ -55,9 +55,9 @@
     </table>
   <% end %>
 
-  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Parameters', parameters: @action.parameters, form_prefix: ""} %>
+  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Parameters', parameters: @action.parameters, form_prefix: "", include_formats: true} %>
 
-  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Headers', parameters: @action.headers, form_prefix: "header_"} %>
+  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Headers', parameters: @action.headers, form_prefix: "header_", include_formats: false} %>
 
   <div class="panel panel-default">
     <% if @action.post_data.present? %>

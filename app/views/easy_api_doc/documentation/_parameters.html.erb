@@ -1,6 +1,10 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= title %><small class='pull-right'>format–<%= select_tag 'format', options_for_select(@action.formats) %></small></h3>
+    <h3 class="panel-title"><%= title %>
+    <%- if include_formats %>
+      <small class='pull-right'>format–<%= select_tag 'format', options_for_select(@action.formats) %></small>
+    <%- end %>
+    </h3>
   </div>
   <div class="panel-body">
 
