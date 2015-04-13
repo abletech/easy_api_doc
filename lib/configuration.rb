@@ -13,7 +13,7 @@ class Configuration
   end
 
   def initialize
-    config_file = File.join('doc', 'api_doc.yml')
+    config_file = EasyApiDoc::Options.file || File.join('doc', 'api_doc.yml')
     Rails.logger.info("Loading EasyApiDoc configuration file #{config_file}")
 
     @options = YAML.load(File.read(config_file))

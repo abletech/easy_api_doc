@@ -25,7 +25,7 @@
     <h3 class="panel-title">Description</h3>
   </div>
   <div class="panel-body">
-    <%= contents_for_action(@resource, @action, 'description') %>
+    <%= raw contents_for_action(@resource, @action, 'description') %>
   </div>
 </div>
 
@@ -55,31 +55,9 @@
     </table>
   <% end %>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Parameters<small class='pull-right'>format–<%= select_tag 'format', options_for_select(@action.formats) %></small></h3>
-    </div>
-    <div class="panel-body">
+  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Parameters', parameters: @action.parameters, form_prefix: "", include_formats: true} %>
 
-      <% if @action.parameters && @action.parameters.any? %>
-      <table class='table table-bordered table-condensed'>
-        <tr class='strong'>
-          <th>Parameter</th>
-          <th>Value</th>
-          <th><%= link_to 'disable all', '#', :class => 'disable-all-toggle' %></th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Required</th>
-          <th>Info</th>
-        </tr>
-        <% @action.parameters.each do |p| %>
-          <%= render :partial => 'easy_api_doc/documentation/parameter', :locals => {:parameter => p} %>
-        <% end %>
-      </table>
-      <% end %>
-
-    </div>
-  </div>
+  <%= render :partial => 'easy_api_doc/documentation/parameters', :locals => {:title => 'Headers', parameters: @action.headers, form_prefix: "header_", include_formats: false} %>
 
   <div class="panel panel-default">
     <% if @action.post_data.present? %>

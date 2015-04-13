@@ -10,20 +10,20 @@
     <td></td>
   </tr>
   <% parameter.parameters.each do |p| %>
-    <%= render :partial => 'easy_api_doc/documentation/parameter', :locals => {:parameter => p} %>
+    <%= render :partial => 'easy_api_doc/documentation/parameter', :locals => {:parameter => p, form_prefix: form_prefix} %>
   <% end %>
 <% else %>
   <%# Standard parameter %>
   <tr>
     <td><%= raw('&#187; ' * parameter.scope_level) %> <%= parameter.name %></td>
     <td>
-      <%= text_field_tag(parameter.field_name, (parameter['example'] || parameter['default']), :class => 'input') %>
+      <%= text_field_tag(form_prefix + parameter.field_name, (parameter['example'] || parameter['default']), :class => 'input') %>
       <%= link_to('add another item', '#', :class => 'append-fields') if parameter['type'] == 'array' %><br />
     </td>
     <td><%= link_to 'disable', '#', :class => 'disable-field-toggle' %></td>
     <td><%= parameter['type'] %></td>
     <td><%= parameter['default'] %></td>
     <td><%= parameter['required'] %></td>
-    <td><%= parameter['info'] %></td>
+    <td><%= raw parameter['info'] %></td>
   </tr>
 <% end %>

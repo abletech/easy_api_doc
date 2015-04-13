@@ -26,7 +26,8 @@ $(document).ready(function () {
       delete params['format'];
       var uri = form.attr('action') + '.' + format;
       var auth_settings = pop_auth_settings(params);
-  
+      var headers = pop_headers(params)
+
       // switch out url variables;
       var matches = uri.match(/\/(\:\w+)/g);
       if(matches) {
@@ -53,8 +54,7 @@ $(document).ready(function () {
       }
   
       var remote_method = form.attr('method');
-  
-      process_api_call(uri, remote_method, params, auth_settings, {'form': form, 'format': format});
+      process_api_call(uri, remote_method, params, auth_settings, headers, {'form': form, 'format': format});
     }
     catch(e) {
       alert("There was an error within the test harness");
@@ -108,12 +108,20 @@ $(document).ready(function () {
 // when executed in a web browser, due to Cross-Site security constraints from browsers
 // For basic auth, either use already encoded credentials, or you'll need a javascript Base64 library as used below
 // See: http://ostermiller.org/calc/encode.html for an example Base64 encoding js library
-function process_api_call(uri, method, data, auth_settings, options) {
+function process_api_call(uri, method, data, auth_settings, headers, options) {
   var form = options.form;
+  var processData = true
+  console.log(options)
+  if(options.format === 'json_raw_body'){
+    data = JSON.stringify(data)
+    processData = false
+    options.format = 'json'
+  }
   $.ajax({
 	  url: uri,
     type: method,
-    data: data, 
+    data: data,
+    processData: processData, 
     error: function(xhr, data, ex) {
       response = xhr.responseText;
       if(response == null || response == '' || response.size == 0){
@@ -124,6 +132,7 @@ function process_api_call(uri, method, data, auth_settings, options) {
     beforeSend: function(xhr, settings) {
       form_output(options.form, '', '', options.format); // clear output
       form.children('.loading').show();
+      
       auth_value = null;
       if(auth_settings && auth_settings.type == 'basic') {
         auth_value = "Basic " + encodeBase64(auth_settings.user + ":" + auth_settings.password);
@@ -132,8 +141,15 @@ function process_api_call(uri, method, data, auth_settings, options) {
       } else if (auth_settings && auth_settings.type == 'oauth_bearer') {
         auth_value = "Bearer " + auth_settings.access_token;
       }
-      if (auth_value != null)
+      if (auth_value != null){
         xhr.setRequestHeader("Authorization", auth_value.replace(/(\r\n|\n|\r)/gm,"")); // dont send through \n on headers or they will be ignored
+      }
+
+      for (key in headers) {
+        value = headers[key];
+        xhr.setRequestHeader(key, value.replace(/(\r\n|\n|\r)/gm,""));
+      }
+
 			return true;
     },
     success: function(data, textStatus, xhr) {
@@ -189,6 +205,20 @@ function pop_auth_settings(params){
   delete params['_doc_authentication[access_token]'];
 
   return auth_settings;
+}
+
+function pop_headers(params){
+  var headers = {};
+  for (key in params) {
+    var value = params[key];
+    if (key.slice(0,7) === "header_"){
+      delete params[key];
+      var header = key.slice(7)
+      headers[header] = value
+      
+    }
+  }
+  return headers
 }
 
 // helper to map the html form parameters to a hash
